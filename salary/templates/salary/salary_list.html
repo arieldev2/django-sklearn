@@ -1,0 +1,49 @@
+{% extends "iris/base.html" %}
+
+
+{% block content %}
+
+ 
+
+<a class="btn btn-outline-info" href="{% url 'salario-create' %}">Nuevo</a>
+
+
+
+<table class="table mt-3">
+	<thead class="text-white bg-info">
+		
+		<tr>
+			<th scope="col">ID</th>
+			<th scope="col">Experiencia</th>
+			<th scope="col">Salario</th>
+			
+			<th scope="col">Detalles</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		{% for item in items %}
+
+		<tr>
+			<td>{{ item.id}}</td>
+			<td>{{ item.experiencia}} años</td>
+			<td>{{ item.salario_ex|floatformat:"2" }}</td>
+			
+
+	
+			<td>
+				<a class="btn btn-sm btn-outline-info" href="{% url 'salario-detail' item.id %}">Detalles</a>
+			</td>
+			
+		</tr>
+
+		{% endfor %}
+	</tbody>
+</table>
+
+
+
+
+
+
+{% endblock  %}

@@ -1,0 +1,71 @@
+{% extends "iris/base.html" %}
+
+
+{% block content %}
+
+ <div class="form-group float-right">
+      <form method="POST" action="{% url 'add' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+      <input type="file" name="q" value="q">
+      <button class="btn btn-sm btn-outline-success" type="submit">Agregar</button>
+      </form>
+      </div>
+
+<a class="btn btn-outline-info" href="{% url 'create' %}">Nuevo</a>
+
+
+
+<table class="table mt-3">
+	<thead class="text-white bg-info">
+		<tr>
+			<th class="text-center" colspan="8">Especies: Iris Setosa, Iris Versicolor, Iris Virginica</th>
+		</tr>
+		<tr>
+			<th scope="col">ID</th>
+			<th scope="col">Largo de sepalo</th>
+			<th scope="col">Ancho de sepalo</th>
+			<th scope="col">Largo de petalo</th>
+			<th scope="col">Ancho de petalo</th>
+			<th scope="col">Especies</th>
+			<th scope="col">Fecha</th>
+			<th scope="col">Detalles</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		{% for item in items %}
+
+		<tr>
+			<td>{{ item.id}}</td>
+			<td>{{ item.largo_de_sepalo}}</td>
+			<td>{{ item.ancho_de_sepalo }}</td>
+			<td>{{ item.largo_de_petalo }}</td>
+			<td>{{ item.ancho_de_petalo }}</td>
+
+			{% if item.prediccion == 0 %}
+			<td>{{ item.prediccion }} Iris Setosa</td>
+			{% elif item.prediccion == 1 %}
+			<td>{{ item.prediccion }} Iris Versicolor</td>
+			{% elif item.prediccion == 2 %}
+			<td>{{ item.prediccion }} Iris Virginica</td>
+			{% endif %}
+
+
+
+			<td>{{ item.fecha }}</td>
+			<td>
+				<a class="btn btn-sm btn-outline-info" href="{% url 'detail' item.id %}">Detalles</a>
+			</td>
+			
+		</tr>
+
+		{% endfor %}
+	</tbody>
+</table>
+
+
+
+
+
+
+{% endblock  %}

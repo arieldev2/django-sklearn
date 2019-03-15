@@ -1,0 +1,35 @@
+{% extends "iris/base.html" %}
+
+
+
+{% block content %}
+
+<div class="container">
+
+<div class="card">
+	<div class="card-header"><h4>Elimnar</h4></div>
+	<div class="card-body">
+		<form method="POST">
+			{% csrf_token %}
+
+			<strong>Esta seguro de elimnar la prediccion #{{object.id}}?</strong>
+
+			<div class="mt-3">
+				<button class="btn btn-danger" type="submit">Si, Eliminar</button>
+				<a class="btn btn-secondary" href="{% url 'detail' object.id %}">Cancelar</a>
+			</div>
+		</form>
+		
+
+	</div>
+	
+</div>
+</div>
+
+
+
+
+{% endblock  %}
+
+
+
